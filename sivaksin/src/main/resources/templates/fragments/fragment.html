@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Home</title>
+		<head th:fragment="css">
+			<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		</head>
+	</head>
+	<head th:fragment="js">
+		<!-- <script
+			src="https://code.jqquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFIBw8HfCJo="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script> -->
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+	<body>
+		<nav
+			th:fragment="navbar(page)"
+			class="navbar navbar-expand-lg navbar-light bg-danger"
+		>
+			<a class="navbar-brand font-weight-bold text-light" href="/">SIVAKSIN</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+					<li
+						th:classappend="${page == 'Faskes'} ? active : ''"
+						class="nav-item"
+					>
+						<a class="nav-link" href="/faskes">Faskes</a>
+					</li>
+					<li
+						th:classappend="${page == 'Pasien'} ? active : ''"
+						class="nav-item"
+					>
+						<a class="nav-link" href="/pasien">Pasien</a>
+					</li>
+					<li th:classappend="${page == 'Cari'} ? active : ''" class="nav-item">
+						<a class="nav-link" href="/cari">Cari</a>
+					</li>
+				</ul>
+
+				<!-- <form
+					th:action="@{/cabang/view}"
+					class="form-inline my-2 my-lg-0"
+					method="GET"
+				>
+					<input
+						type="search"
+						name="noCabang"
+						placeholder="No Cabang"
+						aria-label="Search"
+						class="form-control mr-sm-2"
+					/>
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+						Search
+					</button>
+				</form> -->
+			</div>
+		</nav>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Faskes</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
+		<a class="btn btn-primary" th:href="@{/faskes/tambah}">Tambah Faskes</a>
+		<div class="container">
+			<h2>Daftar Seluruh Faskes SIVAKSIN</h2>
+			<br />
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Nama</th>
+									<th>Kuota</th>
+									<th>Provinsi</th>
+									<th>Kabupaten</th>
+									<th>Jam Mulai</th>
+									<th>Jam Selesai</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody th:each="faskes : ${listFaskes}">
+								<tr>
+									<td th:text="${faskes.idFaskes}"></td>
+									<td th:text="${faskes.namaFaskes}"></td>
+									<td th:text="${faskes.kuota}"></td>
+									<td th:text="${faskes.provinsi}"></td>
+									<td th:text="${faskes.Kabupaten}"></td>
+									<td th:text="${faskes.jamMulai}"></td>
+									<td th:text="${faskes.jamTutup}"></td>
+									<td>
+										<a
+											class="btn btn-primary"
+											th:href="@{/faskes/} + ${faskes.idFaskes}"
+											>Lihat</a
+										>
+
+										<a
+											th:class="${'btn btn-primary'}"
+											th:href="@{/faskes/ubah/} + ${faskes.idFaskes}"
+											>Ubah</a
+										>
+
+										<a
+											th:class="${'btn btn-danger'}"
+											th:href="@{/faskes/hapus/} + ${faskes.idFaskes}"
+											>Hapus</a
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br />
+			</div>
+		</div>
+	</body>
+</html>

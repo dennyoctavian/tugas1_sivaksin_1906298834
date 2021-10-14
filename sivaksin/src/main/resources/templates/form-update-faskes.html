@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>SIVAKSIN</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
+		<div class="container">
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<h2>Update Faskes SIVAKSIN</h2>
+						<br />
+						<form
+							th:action="@{/faskes/ubah}"
+							th:object="${faskes}"
+							method="POST"
+						>
+							<input type="hidden" th:field="*{idFaskes}" />
+
+							Nama Faskes : <br />
+							<input
+								class="form-control"
+								type="text"
+								name="namaFaskes"
+								th:value="*{namaFaskes}"
+							/>
+							<br /><br />
+
+							Kuota : <br />
+							<input
+								class="form-control"
+								type="text"
+								name="kuota"
+								th:value="*{kuota}"
+							/>
+							<br /><br />
+
+							Provinsi : <br />
+							<input
+								class="form-control"
+								type="text"
+								name="provinsi"
+								th:value="*{provinsi}"
+							/>
+							<br /><br />
+
+							Kabupaten : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="kabupaten"
+								th:value="*{kabupaten}"
+							/>
+							<br /><br />
+
+							Jam Mulai : : <br />
+							<input
+								required
+								class="form-control"
+								type="time"
+								name="jamMulai"
+								th:value="*{jamMulai}"
+							/>
+							<br /><br />
+
+							Jam Selesai : <br />
+							<input
+								required
+								class="form-control"
+								type="time"
+								name="jamTutup"
+								th:value="*{jamTutup}"
+							/>
+							<br /><br />
+
+							Vaksin : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="id_vaksin"
+								th:value="*{namaVaksin.jenisVaksin}"
+							/>
+							<br /><br />
+
+							<button class="btn btn-primary" type="submit">Submit</button>
+							<a class="btn btn-primary" href="/cabang/viewall">Cancel</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

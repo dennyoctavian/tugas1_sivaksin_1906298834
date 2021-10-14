@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>SIVAKSIN</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
+		<div class="container">
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<h2>Tambah Faskes SIVAKSIN</h2>
+						<br />
+						<form
+							th:action="@{/faskes/tambah}"
+							th:object="${faskes}"
+							method="POST"
+						>
+							Nama Faskes : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="namaFaskes"
+							/>
+							<br /><br />
+
+							Kuota : <br />
+							<input required class="form-control" type="text" name="kuota" />
+							<br /><br />
+
+							Provinsi : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="provinsi"
+							/>
+							<br /><br />
+
+							Kabupaten : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="kabupaten"
+							/>
+							<br /><br />
+
+							Jam Mulai : <br />
+							<input
+								required
+								class="form-control"
+								type="time"
+								name="jamMulai"
+							/>
+							<br /><br />
+
+							Jam Selesai : <br />
+							<input
+								required
+								class="form-control"
+								type="time"
+								name="jamTutup"
+							/>
+							<br /><br />
+
+							Vaksin : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="id_vaksin"
+							/>
+							<br /><br />
+
+							<button class="btn btn-primary" type="submit">Tambah</button>
+							<a class="btn btn-primary" href="/">Batal</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
