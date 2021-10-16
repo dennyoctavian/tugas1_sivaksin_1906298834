@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.domain.Sort;
+import java.util.ArrayList;
+
 
 @Service
 @Transactional
@@ -33,6 +34,19 @@ public class FaskesServiceImpl implements FaskesService {
             return faskes.get();
         }
         return null;
+    }
+
+    @Override
+    public List<FaskesModel> getFaskesByNamaVaksin(Long idVaksin){
+        List<FaskesModel> faskes = faskesDb.findAll();
+        List<FaskesModel> new_faskes = new ArrayList<FaskesModel>();
+        
+        for (FaskesModel x : faskes) {
+            if (x.getVaksinId().getIdVaksin() == idVaksin) {
+                new_faskes.add(x);
+            }
+        }
+        return new_faskes;
     }
 
     @Override

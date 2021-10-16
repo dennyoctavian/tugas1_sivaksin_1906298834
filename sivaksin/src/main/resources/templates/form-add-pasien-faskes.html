@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>SIVAKSIN</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
+		<div class="container">
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<h2>Tambah Pasien ke Faskes SIVAKSIN</h2>
+						<br />
+						<form
+							th:action="'/faskes/' +${id} +'/tambah/pasien'"
+							th:object="${suntik}"
+							method="post"
+						>
+							Pasien : <br />
+							<select required name="pasien" class="form-control">
+								<option
+									th:each="pasien : ${pasiens}"
+									th:value="${pasien.idPasien}"
+									th:text="${pasien.namaPasien}"
+									name="pasien"
+								></option>
+							</select>
+							<br /><br />
+
+							Dokter : <br />
+							<select required name="dokter" class="form-control">
+								<option
+									th:each="dokter : ${dokters}"
+									th:value="${dokter.idDokter}"
+									th:text="${dokter.nama_dokter}"
+									name="dokter"
+								></option>
+							</select>
+							<br /><br />
+
+							Waktu Suntik : <br />
+							<input
+								required
+								class="form-control"
+								type="datetime-local"
+								name="waktuSuntik"
+							/>
+							<br /><br />
+
+							<button class="btn btn-primary" type="submit">Tambah</button>
+							<a class="btn btn-primary" href="/">Batal</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

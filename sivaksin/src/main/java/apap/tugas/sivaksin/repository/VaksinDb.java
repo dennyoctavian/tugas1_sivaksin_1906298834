@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VaksinDb extends JpaRepository<VaksinModel, Long> {
     Optional<VaksinModel> findByIdVaksin(Long idVaksin);
+    Optional<VaksinModel> findByJenisVaksin(String jenisVaksin);
 }

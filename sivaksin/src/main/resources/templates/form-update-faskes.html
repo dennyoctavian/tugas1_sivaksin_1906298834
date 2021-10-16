@@ -79,13 +79,19 @@
 							<br /><br />
 
 							Vaksin : <br />
-							<input
-								required
-								class="form-control"
-								type="text"
-								name="id_vaksin"
-								th:value="*{namaVaksin.jenisVaksin}"
-							/>
+							<select required name="vaksinId" class="form-control">
+								<option
+									name="vaksinId"
+									th:value="${vaksinNow.idVaksin}"
+									th:text="${vaksinNow.jenisVaksin}"
+								></option>
+								<option
+									th:each="vaksin : ${vaksins}"
+									th:value="${vaksin.idVaksin}"
+									th:text="${vaksin.jenisVaksin}"
+									name="vaksinId"
+								></option>
+							</select>
 							<br /><br />
 
 							<button class="btn btn-primary" type="submit">Submit</button>

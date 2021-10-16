@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Pasien</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
+
+		<form th:action="@{/cari/pasien}" method="GET">
+			<select required name="jenisVaksin" class="form-control">
+				<option
+					th:each="vaksin : ${vaksins}"
+					th:value="${vaksin.jenisVaksin}"
+					th:text="${vaksin.jenisVaksin}"
+					name="jenisVaksin"
+				></option>
+			</select>
+			<select required name="namaFaskes" class="form-control">
+				<option
+					th:each="faskes : ${faskess}"
+					th:value="${faskes.namaFaskes}"
+					th:text="${faskes.namaFaskes}"
+					name="namaFaskes"
+				></option>
+			</select>
+			<button class="btn btn-primary" type="submit">Cari</button>
+		</form>
+		<a class="btn btn-primary" th:href="@{/pasien/tambah}">Tambah Pasien</a>
+		<div class="container">
+			<h2>Daftar Seluruh Pasien SIVAKSIN</h2>
+			<br />
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Nama</th>
+									<th>NIK</th>
+									<th>Nomor Telepon</th>
+									<th>Jenis Kelamin</th>
+									<th>Tanggal Lahir</th>
+									<th>Tempat Lahir</th>
+									<th>Pekerjaan</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody th:each="pasien : ${listPasien}">
+								<tr>
+									<td th:text="${pasien.idPasien}"></td>
+									<td th:text="${pasien.namaPasien}"></td>
+									<td th:text="${pasien.nik}"></td>
+									<td th:text="${pasien.noTelepon}"></td>
+									<td
+										th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"
+									></td>
+									<td th:text="${pasien.tanggalLahir}"></td>
+									<td th:text="${pasien.tempatLahir}"></td>
+									<td th:text="${pasien.pekerjaan}"></td>
+									<td>
+										<a
+											class="btn btn-primary"
+											th:href="@{/pasien/} + ${pasien.idPasien}"
+											>Lihat</a
+										>
+
+										<a
+											th:class="${'btn btn-primary'}"
+											th:href="@{/pasien/ubah/} + ${pasien.idPasien}"
+											>Ubah</a
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br />
+			</div>
+		</div>
+	</body>
+</html>

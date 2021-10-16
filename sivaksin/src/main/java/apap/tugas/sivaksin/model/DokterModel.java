@@ -25,17 +25,17 @@ public class DokterModel implements Serializable {
     private Long idDokter;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=18)
     @Column(name="nip", nullable = false)
     private String nip;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="nama_dokter", nullable = false)
     private String nama_dokter;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=13)
     @Column(name="no_telepon", nullable = false)
     private String noTelepon;
 

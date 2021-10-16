@@ -7,76 +7,73 @@
 	</head>
 
 	<body>
-		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
+		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
+
 		<div class="container">
 			<div class="card m-4 p-4">
 				<div class="card-body">
 					<div class="justify-content-center">
-						<h2>Tambah Faskes SIVAKSIN</h2>
+						<h2>Tambah Pasien SIVAKSIN</h2>
 						<br />
 						<form
-							th:action="@{/faskes/tambah}"
-							th:object="${faskes}"
+							th:action="@{/pasien/tambah}"
+							th:object="${pasien}"
 							method="POST"
 						>
-							Nama Faskes : <br />
+							Nama Pasien : <br />
 							<input
 								required
 								class="form-control"
 								type="text"
-								name="namaFaskes"
+								name="namaPasien"
 							/>
 							<br /><br />
 
-							Kuota : <br />
-							<input required class="form-control" type="text" name="kuota" />
+							NIK : <br />
+							<input required class="form-control" type="number" name="nik" />
 							<br /><br />
 
-							Provinsi : <br />
+							Nomor Telepon : <br />
 							<input
 								required
 								class="form-control"
-								type="text"
-								name="provinsi"
+								type="number"
+								name="noTelepon"
 							/>
 							<br /><br />
 
-							Kabupaten : <br />
-							<input
-								required
-								class="form-control"
-								type="text"
-								name="kabupaten"
-							/>
-							<br /><br />
-
-							Jam Mulai : <br />
-							<input
-								required
-								class="form-control"
-								type="time"
-								name="jamMulai"
-							/>
-							<br /><br />
-
-							Jam Selesai : <br />
-							<input
-								required
-								class="form-control"
-								type="time"
-								name="jamTutup"
-							/>
-							<br /><br />
-
-							Vaksin : <br />
-							<select required name="vaksinId" class="form-control">
-								<option
-									th:each="vaksin : ${vaksins}"
-									th:value="${vaksin.idVaksin}"
-									th:text="${vaksin.jenisVaksin}"
-									name="vaksinId"
-								></option>
+							Jenis Kelamin : <br />
+							<select required name="jenisKelamin" class="form-control">
+								<option th:value="0" th:text="Laki-Laki"></option>
+								<option th:value="1" th:text="Perempuan"></option>
 							</select>
+							<br /><br />
+
+							Tanggal Lahir : <br />
+							<input
+								required
+								class="form-control"
+								type="datetime-local"
+								name="tanggalLahir"
+							/>
+							<br /><br />
+
+							Tempat Lahir : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="tempatLahir"
+							/>
+							<br /><br />
+
+							Pekerjaan : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="pekerjaan"
+							/>
 							<br /><br />
 
 							<button class="btn btn-primary" type="submit">Tambah</button>

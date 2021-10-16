@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>SIVAKSIN</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
+		<div class="container">
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<h2>Update Pasien SIVAKSIN</h2>
+						<br />
+						<form
+							th:action="@{/pasien/ubah}"
+							th:object="${pasien}"
+							method="POST"
+						>
+							<input type="hidden" th:field="*{idPasien}" />
+
+							Nama Pasien : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="namaPasien"
+								th:value="*{namaPasien}"
+							/>
+							<br /><br />
+
+							NIK : <br />
+							<input
+								required
+								class="form-control"
+								type="number"
+								name="nik"
+								th:value="*{nik}"
+							/>
+							<br /><br />
+
+							Nomor Telepon : <br />
+							<input
+								required
+								class="form-control"
+								type="number"
+								name="noTelepon"
+								th:value="*{noTelepon}"
+							/>
+							<br /><br />
+
+							Jenis Kelamin : <br />
+							<select required name="jenisKelamin" class="form-control">
+								<option
+									th:value="${pasien.jenisKelamin}"
+									th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"
+								></option>
+								<option th:value="0" th:text="Laki-Laki"></option>
+								<option th:value="1" th:text="Perempuan"></option>
+							</select>
+							<br /><br />
+
+							Tanggal Lahir : <br />
+							<input
+								required
+								class="form-control"
+								type="datetime-local"
+								name="tanggalLahir"
+								th:value="*{tanggalLahir}"
+							/>
+							<br /><br />
+
+							Tempat Lahir : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="tempatLahir"
+								th:value="*{tempatLahir}"
+							/>
+							<br /><br />
+
+							Pekerjaan : <br />
+							<input
+								required
+								class="form-control"
+								type="text"
+								name="pekerjaan"
+								th:value="*{pekerjaan}"
+							/>
+							<br /><br />
+
+							<button class="btn btn-primary" type="submit">Submit</button>
+							<a class="btn btn-primary" href="/cabang/viewall">Cancel</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

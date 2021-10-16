@@ -34,6 +34,13 @@
 				</div>
 				<br />
 			</div>
+			<br />
+			<a
+				th:class="${'btn btn-secondary'}"
+				th:href="@{/faskes/} + ${faskes.idFaskes} + @{/tambah/pasien}"
+				>Tambah Pasien</a
+			>
+			<br />
 			<div class="card m-4 p-4">
 				<div class="card-body">
 					<div class="justify-content-center">
@@ -44,7 +51,7 @@
 									<th>Nama</th>
 									<th>NIK</th>
 									<th>Nomor Telepon</th>
-									<th>Jenis Kembali</th>
+									<th>Jenis Kelamin</th>
 									<th>Tempat Lahir</th>
 									<th>Pekerjaan</th>
 									<th></th>
@@ -56,7 +63,9 @@
 									<td th:text="${patient.namaPasien}"></td>
 									<td th:text="${patient.nik}"></td>
 									<td th:text="${patient.noTelepon}"></td>
-									<td th:text="${patient.jenisKelamin}"></td>
+									<td
+										th:text="${patient.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"
+									></td>
 									<td th:text="${patient.tempatLahir}"></td>
 									<td th:text="${patient.pekerjaan}"></td>
 									<td>
@@ -65,7 +74,6 @@
 											th:href="@{/pasien/} + ${faskes.idFaskes}"
 											>Lihat</a
 										>
-
 										<a
 											th:class="${'btn btn-primary'}"
 											th:href="@{/pasien/ubah/} + ${faskes.idFaskes}"

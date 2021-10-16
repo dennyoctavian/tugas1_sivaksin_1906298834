@@ -18,6 +18,11 @@ public class VaksinServiceImpl implements VaksinService {
     VaksinDb vaksinDb;
 
     @Override
+    public List<VaksinModel> getVaksinList(){
+        return vaksinDb.findAll();
+    }
+
+    @Override
     public VaksinModel getVaksinByIdVaksin(Long idVaksin){
         Optional<VaksinModel> vaksin =  vaksinDb.findByIdVaksin(idVaksin);
         if (vaksin.isPresent()) {
@@ -25,4 +30,15 @@ public class VaksinServiceImpl implements VaksinService {
         }
         return null;
     }
+
+    @Override
+    public VaksinModel getVaksinBynamaVaksin(String jenisVaksin){
+        Optional<VaksinModel> vaksin =  vaksinDb.findByJenisVaksin(jenisVaksin);
+        if (vaksin.isPresent()) {
+            return vaksin.get();
+        }
+        return null;
+    }
+
+    
 }

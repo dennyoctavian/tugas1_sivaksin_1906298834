@@ -25,14 +25,13 @@ public class FaskesModel implements Serializable {
     private Long idFaskes;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="nama_faskes", nullable = false)
     private String namaFaskes;
 
     @NotNull
-    @Size(max=30)
     @Column(name="kuota", nullable = false)
-    private String kuota;
+    private int kuota;
 
     @NotNull
     @Column(nullable = false)
@@ -45,24 +44,21 @@ public class FaskesModel implements Serializable {
     private LocalTime jamTutup;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="provinsi", nullable = false)
     private String provinsi;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="kabupaten", nullable = false)
     private String kabupaten;
 
     
 
 //  Relasi dengan VaksinModel
-    // @ManyToOne()
-    // @JoinColumn(name="id_vaksin", referencedColumnName = "id_vaksin", insertable = false, updatable = false)    
-    // private VaksinModel namaVaksin;
     @ManyToOne
-    @JoinColumn(name="id_vaksin")
-    private VaksinModel namaVaksin;
+    @JoinColumn(name="vaksin_id")
+    private VaksinModel vaksinId;
 
 //      Relasi degan PasienModel
     @ManyToMany

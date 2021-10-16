@@ -7,6 +7,7 @@ public interface FaskesService {
     List<FaskesModel> getFaskesList();
     void addFaskes(FaskesModel faskes);
     FaskesModel getFaskesByIdFaskes(Long idFaskes);
+    List<FaskesModel> getFaskesByNamaVaksin(Long idVaksin);
     void updateFaskes(FaskesModel faskes);
     void removeFaskes(FaskesModel faskes);
 }

@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,15 +34,16 @@ public class SuntikModel implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    @DateTimeFormat(pattern ="HH:mm")
-    private LocalTime waktuSuntik;
+    @DateTimeFormat(pattern ="yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date waktuSuntik;
 
     @NotNull
     @Column(name="id_faskes", nullable = false)
     Long idFaskes;
 
     @NotNull
-    @Size(max=13)
+    @Size(max=255)
     @Column(name="batch_id", nullable = false)
     private String BatchId;
 

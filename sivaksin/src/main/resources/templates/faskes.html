@@ -9,6 +9,20 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
 		<a class="btn btn-primary" th:href="@{/faskes/tambah}">Tambah Faskes</a>
+		<p>Pilih Jenis Vaksin</p>
+
+		<form th:action="@{/cari/faskes}" method="GET">
+			<select required name="jenisVaksin" class="form-control">
+				<option
+					th:each="vaksin : ${vaksins}"
+					th:value="${vaksin.jenisVaksin}"
+					th:text="${vaksin.jenisVaksin}"
+					name="jenisVaksin"
+				></option>
+			</select>
+			<button class="btn btn-primary" type="submit">Cari</button>
+		</form>
+
 		<div class="container">
 			<h2>Daftar Seluruh Faskes SIVAKSIN</h2>
 			<br />

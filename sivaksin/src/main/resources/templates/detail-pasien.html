@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Detail Pasien</title>
+		<meta charset="UTF-8" />
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
+		<div class="container">
+			<h2>Detail Pasien</h2>
+			<br />
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<h3>Nama Pasien :</h3>
+						<p th:text="${pasien.namaPasien}"></p>
+						<h3>NIK :</h3>
+						<p th:text="${pasien.nik}"></p>
+						<h3>Nomor Telepon:</h3> :</h3>
+						<p th:text="${pasien.noTelepon}"></p>
+						<h3>Jenis Kelamin :</h3>
+						<p th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"></p>
+						<h3>Tanggal Lahir:</h3>
+						<p th:text="${pasien.tanggalLahir}"></p>
+						<h3>Temapat Lahir:</h3>
+						<p th:text="${pasien.tempatLahir}"></p>
+						<h3>Pekerjaan:</h3>
+						<p th:text="${pasien.pekerjaan}"></p>
+						<br />
+					</div>
+				</div>
+				<br />
+			</div>
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Nama Faskes</th>
+									<th>Vaksin</th>
+									<th>BatchId</th>
+									<th>Waktu Suntik</th>
+									<th>Nama Dokter</th>
+									<th>NIP</th>
+									<th>No Telepon Dokter</th>
+								</tr>
+							</thead>
+							<tbody th:each="suntik : ${listSuntik}">
+								<tr>
+									<td th:text="${suntik.idSuntik}"></td>
+									<td th:text="${suntik.idFaskes}"></td>
+									<td th:text="${suntik.idFaskes}"></td>
+									<td th:text="${suntik.BatchId}"></td>
+									<td th:text="${suntik.waktuSuntik}"></td>
+									<td th:text="${suntik.dokter}"></td>    
+									<td th:text="${suntik.dokter}"></td>
+									<td th:text="${suntik.dokter}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<br />
+					</div>
+				</div>
+				<br />
+			</div>
+			<a class="btn btn-primary" href="/">Kembali</a>
+		</div>
+	</body>
+</html>

@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,16 +21,16 @@ public class VaksinModel implements Serializable{
     private Long idVaksin;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="asal_negara", nullable = false)
     private String asalNegara;
 
     @NotNull
     @Column(name="efikasi", nullable = false)
-    Long efikasi;
+    private double efikasi;
 
     @NotNull
-    @Size(max=30)
+    @Size(max=255)
     @Column(name="jenis_vaksin", nullable = false)
     private String jenisVaksin;
 
