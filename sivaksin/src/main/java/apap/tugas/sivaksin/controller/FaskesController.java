@@ -152,38 +152,33 @@ public class FaskesController {
             @ModelAttribute SuntikModel suntik,
             Model model
     ) {
-        String gender = "";
-
-        if (suntik.getPasien().getJenisKelamin() == 0){
-            gender = "1";
-        } else {
-            gender = "2";
-        }
-        String kareakterAkhirNama = suntik.getPasien().getNamaPasien();
-        String lastChar = kareakterAkhirNama.substring(kareakterAkhirNama.length() - 1).toUpperCase();
-        String tempatLahir = suntik.getPasien().getTempatLahir();
-        String tempatLahir2Char = tempatLahir.substring(0,2).toUpperCase();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("ddMM");
-        DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
-        String tanggalLahir = suntik.getPasien().getTanggalLahir().format(formatDate);
-        String tahun = suntik.getPasien().getTanggalLahir().format(year);
-        int tahunLahir = (int) Math.floor(Integer.parseInt(tahun)/10);
-        Random random = new Random();
-        char randomizedCharacter1 = (char) (random.nextInt(26) + 'a');
-        char randomizedCharacter2 = (char) (random.nextInt(26) + 'a');
-        String randomChar = Character.toString(randomizedCharacter1 )+ Character.toString(randomizedCharacter2);
-        String UpRandomCharacter = randomChar.toUpperCase();
-        String BatchId = gender + lastChar + tempatLahir2Char + tanggalLahir + Integer.toString(tahunLahir) + UpRandomCharacter;
-        
-        FaskesModel faskes = faskesService.getFaskesByIdFaskes(id);
     
-        suntik.setBatchId(BatchId);
+        String batchId = suntikService.getStringBatchId(suntik);
+        SuntikModel suntikModel = suntikService.getSuntikByBatchId(batchId);
+        boolean status = true;
+        while (status) {
+            if (suntikModel != null) {
+                batchId = suntikService.getStringBatchId(suntik);
+            } else {
+                status = false;
+            }
+        }
+        
+        suntik.setBatchId(batchId);
         suntik.setIdFaskes(id);
         suntikService.addSuntik(suntik);
+        
+        FaskesModel faskes = faskesService.getFaskesByIdFaskes(id);
         PasienModel pasien = pasienService.getPasienByIdPasien(suntik.getPasien().getIdPasien());
+        List<PasienModel> pasiens = faskes.getListPasien();
+        List<FaskesModel> faskess = pasien.getListFaskes();
+        pasiens.add(pasien);
+        faskess.add(faskes);
         pasienService.addPasien(pasien);
         faskesService.addFaskes(faskes);
-        
+        pasien.setListFaskes(faskess);
+        faskes.setListPasien(pasiens);
+
         return "add-pasien-faskes";
     }
 }

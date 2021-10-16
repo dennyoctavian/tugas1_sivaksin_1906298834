@@ -45,6 +45,6 @@ public class SuntikModel implements Serializable {
     @NotNull
     @Size(max=255)
     @Column(name="batch_id", nullable = false)
-    private String BatchId;
+    private String batchId;
 
 }

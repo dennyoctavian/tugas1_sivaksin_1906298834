@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface SuntikDb extends JpaRepository<SuntikModel, Long>{
-    // Optional<SuntikModel> findByBatchId(String batchId);
+public interface SuntikDb extends JpaRepository<SuntikModel, String>{
+    Optional<SuntikModel> findBybatchId(String batchId);
 }
