@@ -7,14 +7,15 @@
 	</head>
 
 	<body>
-		<nav th:replace="fragments/fragment :: navbar('Faskes')"></nav>
-		<a class="btn btn-primary p-1 m-4" th:href="@{/faskes/tambah}"
-			>Tambah Faskes</a
-		>
-		<!-- <p>Pilih Jenis Vaksin</p>
+		<nav th:replace="fragments/fragment :: navbar('Cari')"></nav>
+		<p>Pilih Jenis Vaksin</p>
 
 		<form th:action="@{/cari/faskes}" method="GET">
-			<select required name="jenisVaksin" class="form-control">
+			<select
+				required
+				name="jenisVaksin"
+				class="form-control mt-4 mb-3 ml-5 mr-5"
+			>
 				<option
 					th:each="vaksin : ${vaksins}"
 					th:value="${vaksin.jenisVaksin}"
@@ -22,8 +23,13 @@
 					name="jenisVaksin"
 				></option>
 			</select>
-			<button class="btn btn-primary" type="submit">Cari</button>
-		</form> -->
+			<button
+				class="btn btn-primary text-right mt-4 mb-3 ml-5 mr-5"
+				type="submit"
+			>
+				Cari
+			</button>
+		</form>
 
 		<div class="container">
 			<h2 class="page-header text-center">Daftar Seluruh Faskes SIVAKSIN</h2>

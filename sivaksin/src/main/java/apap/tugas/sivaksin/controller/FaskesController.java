@@ -65,7 +65,7 @@ public class FaskesController {
             Model model
     ) {
         faskesService.addFaskes(faskes);
-        model.addAttribute("nofaskes", faskes.getIdFaskes());
+        model.addAttribute("namafaskes", faskes.getNamaFaskes());
         return "add-faskes";
     }
 
@@ -77,9 +77,10 @@ public class FaskesController {
         FaskesModel faskes = faskesService.getFaskesByIdFaskes(faskesId);
         String namaVaksin = faskes.getVaksinId().getJenisVaksin();
         List<PasienModel> patients = faskes.getListPasien();
-        System.out.println(patients.size());
         model.addAttribute("faskes", faskes);
         model.addAttribute("vaksin", namaVaksin);
+        model.addAttribute("efikasi", faskes.getVaksinId().getEfikasi());
+        model.addAttribute("negara", faskes.getVaksinId().getAsalNegara());
         model.addAttribute("patients", patients);
         return "detail-faskes";
     }
@@ -114,13 +115,30 @@ public class FaskesController {
         List<PasienModel> listPasien = faskes.getListPasien();
 
         if (listPasien.size() != 0) {
-            return "error-remove-pasien";
+            return "error-remove-faskes";
         } else {
             faskesService.removeFaskes(faskes);
         }
         model.addAttribute("idFaskes", faskes.getIdFaskes());
         return "status-remove-faskes";
     }
+
+    @RequestMapping("/cari")
+    public String cariFeature() {
+        return "cari";
+    }
+
+    @RequestMapping("/cari/faskespertama")
+    public String findFaskes(
+        Model model
+    ) {
+        List<FaskesModel> listFaskes = faskesService.getFaskesList();
+        List<VaksinModel> vaksins = vaksinService.getVaksinList();
+        model.addAttribute("listFaskes", listFaskes);
+        model.addAttribute("vaksins", vaksins);
+        return "faskes-search";
+    }
+
 
     @RequestMapping("/cari/faskes")
     public String findFaskes(
@@ -132,7 +150,7 @@ public class FaskesController {
         List<FaskesModel> listFaskes = faskesService.getFaskesByNamaVaksin(vaksinNow.getIdVaksin());
         model.addAttribute("listFaskes", listFaskes);
         model.addAttribute("vaksins", vaksins);
-        return "faskes";
+        return "faskes-search";
     }
 
     @GetMapping("/faskes/{id}/tambah/pasien")

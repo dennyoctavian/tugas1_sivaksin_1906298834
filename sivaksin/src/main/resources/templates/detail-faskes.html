@@ -15,21 +15,38 @@
 			<div class="card m-4 p-4">
 				<div class="card-body">
 					<div class="justify-content-center">
-						<h3>Nama Fasilitas Kesehatan :</h3>
+						<h5>Nama Fasilitas Kesehatan :</h5>
 						<p th:text="${faskes.namaFaskes}"></p>
-						<h3>Kuota :</h3>
+						<h5>Kuota :</h5>
 						<p th:text="${faskes.kuota}"></p>
-						<h3>Provinsi :</h3>
+						<h5>Provinsi :</h5>
 						<p th:text="${faskes.provinsi}"></p>
-						<h3>Kabupaten :</h3>
+						<h5>Kabupaten :</h5>
 						<p th:text="${faskes.kabupaten}"></p>
-						<h3>Jam Mulai:</h3>
+						<h5>Jam Mulai:</h5>
 						<p th:text="${faskes.jamMulai}"></p>
-						<h3>Jam Selesai:</h3>
+						<h5>Jam Selesai:</h5>
 						<p th:text="${faskes.jamTutup}"></p>
-						<h3>Jenis Vaksin:</h3>
-						<p th:text="${vaksin}"></p>
+						<h5>Jenis Vaksin:</h5>
+						<ul>
+							<li th:text="${vaksin}"></li>
+							<li th:text="${efikasi}"></li>
+							<li th:text="${negara}"></li>
+						</ul>
 						<br />
+						<div class="text-center mt-5 ml-3 mr-4 mb-5">
+							<a
+								th:class="${'btn btn-secondary'}"
+								th:href="@{/faskes/ubah/} + ${faskes.idFaskes}"
+								>Ubah</a
+							>
+
+							<a
+								th:class="${'btn btn-danger'}"
+								th:href="@{/faskes/hapus/} + ${faskes.idFaskes}"
+								>Hapus</a
+							>
+						</div>
 					</div>
 				</div>
 				<br />
@@ -57,9 +74,9 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody th:each="patient : ${patients}">
+							<tbody th:each="patient, x : ${patients}">
 								<tr>
-									<td th:text="${patient.idPasien}"></td>
+									<td th:text="${x.count}"></td>
 									<td th:text="${patient.namaPasien}"></td>
 									<td th:text="${patient.nik}"></td>
 									<td th:text="${patient.noTelepon}"></td>
@@ -91,5 +108,6 @@
 			</div>
 			<a class="btn btn-primary" href="/">Kembali</a>
 		</div>
+		<footer th:replace="fragments/fragment :: footer()"></footer>
 	</body>
 </html>

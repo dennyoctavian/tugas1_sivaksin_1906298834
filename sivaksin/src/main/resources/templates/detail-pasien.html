@@ -10,7 +10,7 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
 		<div class="container">
-			<h2>Detail Pasien</h2>
+			<h2 class="page-header text-center mt-5">Detail Pasien</h2>
 			<br />
 			<div class="card m-4 p-4">
 				<div class="card-body">
@@ -19,7 +19,7 @@
 						<p th:text="${pasien.namaPasien}"></p>
 						<h3>NIK :</h3>
 						<p th:text="${pasien.nik}"></p>
-						<h3>Nomor Telepon:</h3> :</h3>
+						<h3>Nomor Telepon:</h3></h3>
 						<p th:text="${pasien.noTelepon}"></p>
 						<h3>Jenis Kelamin :</h3>
 						<p th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"></p>
@@ -32,8 +32,12 @@
 						<br />
 					</div>
 				</div>
+				<a th:class="${'btn btn-secondary text-center mt-1'}" th:href="@{/pasien/ubah/} + ${pasien.idPasien}"
+											>Ubah</a
+										>
 				<br />
 			</div>
+			<h2 class="page-header text-center">Daftar Vaskinasi</h2>
 			<div class="card m-4 p-4">
 				<div class="card-body">
 					<div class="justify-content-center">
@@ -50,16 +54,16 @@
 									<th>No Telepon Dokter</th>
 								</tr>
 							</thead>
-							<tbody th:each="suntik : ${listSuntik}">
+							<tbody th:each="suntik, x : ${listSuntik}">
 								<tr>
-									<td th:text="${suntik.idSuntik}"></td>
-									<td th:text="${suntik.idFaskes}"></td>
-									<td th:text="${suntik.idFaskes}"></td>
+									<td th:text="${x.count}"></td>
+									<td th:text="${listFaskes}"></td>
+									<td th:text="${listVaksins}"></td>
 									<td th:text="${suntik.BatchId}"></td>
 									<td th:text="${suntik.waktuSuntik}"></td>
-									<td th:text="${suntik.dokter}"></td>    
-									<td th:text="${suntik.dokter}"></td>
-									<td th:text="${suntik.dokter}"></td>
+									<td th:text="${listNamaDokter}"></td>    
+									<td th:text="${listNipDokter}"></td>
+									<td th:text="${listNoTelDokter}"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -72,4 +76,5 @@
 			<a class="btn btn-primary" href="/">Kembali</a>
 		</div>
 	</body>
+	<footer th:replace="fragments/fragment :: footer()"></footer>
 </html>

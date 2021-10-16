@@ -7,10 +7,14 @@
 	</head>
 
 	<body>
-		<nav th:replace="fragments/fragment :: navbar('Pasien')"></nav>
+		<nav th:replace="fragments/fragment :: navbar('Cari')"></nav>
 
-		<!-- <form th:action="@{/cari/pasien}" method="GET">
-			<select required name="jenisVaksin" class="form-control">
+		<form th:action="@{/cari/pasien}" method="GET">
+			<select
+				required
+				name="jenisVaksin"
+				class="form-control mt-4 mb-3 ml-5 mr-5"
+			>
 				<option
 					th:each="vaksin : ${vaksins}"
 					th:value="${vaksin.jenisVaksin}"
@@ -18,7 +22,11 @@
 					name="jenisVaksin"
 				></option>
 			</select>
-			<select required name="namaFaskes" class="form-control">
+			<select
+				required
+				name="namaFaskes"
+				class="form-control mt-4 mb-3 ml-5 mr-5"
+			>
 				<option
 					th:each="faskes : ${faskess}"
 					th:value="${faskes.namaFaskes}"
@@ -26,11 +34,13 @@
 					name="namaFaskes"
 				></option>
 			</select>
-			<button class="btn btn-primary" type="submit">Cari</button>
-		</form> -->
-		<a class="btn btn-primary p-1 m-4" th:href="@{/pasien/tambah}"
-			>Tambah Pasien</a
-		>
+			<button
+				class="btn btn-primary text-right justify-content-end ml-5"
+				type="submit"
+			>
+				Cari
+			</button>
+		</form>
 		<div class="container">
 			<h2 class="page-header text-center">Daftar Seluruh Pasien SIVAKSIN</h2>
 			<br />

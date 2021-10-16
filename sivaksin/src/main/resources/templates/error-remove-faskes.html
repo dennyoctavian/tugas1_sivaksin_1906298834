@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 	<head>
-		<title>Emsidi</title>
+		<title>SIVAKSIN</title>
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar('Fakses')"></nav>
-		<h2 class="justify-content-center text-center card-header mx-2 mt-3">
-			Tambah Faskes SIVAKSIN
-		</h2>
-		<br />
 		<div class="container">
 			<div class="card m-4 p-4">
 				<div class="card-body">
 					<div class="justify-content-center">
-						<h2
-							th:text="'Faskes dengan nama ' + ${namafaskes} + ' berhasil ditambahkan'"
-						></h2>
+						<h2>
+							Faskes tidak dapat dilakukan penghapusan karena ada data
+							didalamnya.
+						</h2>
 						<a class="btn btn-primary" href="/">Kembali ke Home</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer th:replace="fragments/fragment :: footer()"></footer>
 	</body>
+	<footer th:replace="fragments/fragment :: footer()"></footer>
 </html>

@@ -4,6 +4,7 @@ import apap.tugas.sivaksin.model.PasienModel;
 import apap.tugas.sivaksin.model.FaskesModel;
 import apap.tugas.sivaksin.model.VaksinModel;
 import apap.tugas.sivaksin.model.SuntikModel;
+import apap.tugas.sivaksin.model.DokterModel;
 import apap.tugas.sivaksin.service.PasienService;
 import apap.tugas.sivaksin.service.VaksinService;
 import apap.tugas.sivaksin.service.FaskesService;
@@ -63,13 +64,32 @@ public class PasienController {
     ) {
         PasienModel pasien = pasienService.getPasienByIdPasien(pasienId);
         List<SuntikModel> listSuntik = pasien.getSuntik();
-        System.out.println(listSuntik.size());
-        // FaskesModel faskes = faskesService.getFaskesByIdFaskes(idFaskes);
-        // String namaVaksin = faskes.getNamaVaksin().getJenisVaksin();
-        // System.out.println(namaVaksin);
-        // List<VaksinModel> vaksin = pasien.getvaksin();
+        //nama faskes
+        List<String> listFaskes = new ArrayList<>();
+        //nama vaksin
+        List<String> listVaksins = new ArrayList<>();
+        //nama dokter
+        List<String> listNamaDokter = new ArrayList<>();
+        //nip dokter
+        List<String> listNipDokter = new ArrayList<>();
+        // no telepon dokter
+        List<String> listNoTelDokter = new ArrayList<>();
+
+        for (SuntikModel suntik : listSuntik) {
+            FaskesModel faskesvaksin = faskesService.getFaskesByIdFaskes(suntik.getIdFaskes());
+            listFaskes.add(faskesvaksin.getNamaFaskes());
+            listVaksins.add(faskesvaksin.getVaksinId().getJenisVaksin());
+            listNamaDokter.add(suntik.getDokter().getNama_dokter());
+            listNipDokter.add(suntik.getDokter().getNip());
+            listNoTelDokter.add(suntik.getDokter().getNoTelepon());
+        }
         model.addAttribute("pasien", pasien);
         model.addAttribute("listSuntik", listSuntik);
+        model.addAttribute("listFaskes", listFaskes);
+        model.addAttribute("listVaksins", listVaksins);
+        model.addAttribute("listNamaDokter", listNamaDokter);
+        model.addAttribute("listNipDokter", listNipDokter);
+        model.addAttribute("listNoTelDokter", listNoTelDokter);
         return "detail-pasien";
     }
 
@@ -98,6 +118,19 @@ public class PasienController {
         PasienModel pasien = pasienService.getPasienByIdPasien(pasienId);
         pasienService.removePasien(pasien);
         return "status-remove-pasien";
+    }
+
+    @RequestMapping("/cari/faskeskedua")
+    public String findFaskes(
+        Model model
+    ) {
+        List<PasienModel> listPasien = pasienService.getPasienList();
+        List<FaskesModel> listFaskes = faskesService.getFaskesList();
+        List<VaksinModel> vaksins = vaksinService.getVaksinList();
+        model.addAttribute("listPasien", listPasien);
+        model.addAttribute("faskess", listFaskes);
+        model.addAttribute("vaksins", vaksins);
+        return "pasien-search";
     }
 
     @RequestMapping("/cari/pasien")
