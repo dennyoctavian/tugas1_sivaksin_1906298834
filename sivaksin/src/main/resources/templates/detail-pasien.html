@@ -57,13 +57,13 @@
 							<tbody th:each="suntik, x : ${listSuntik}">
 								<tr>
 									<td th:text="${x.count}"></td>
-									<td th:text="${listFaskes}"></td>
-									<td th:text="${listVaksins}"></td>
+									<td th:text="${listFaskes[__${x.index}__]}"></td>
+									<td th:text="${listVaksins[__${x.index}__]}"></td>
 									<td th:text="${suntik.BatchId}"></td>
 									<td th:text="${suntik.waktuSuntik}"></td>
-									<td th:text="${listNamaDokter}"></td>    
-									<td th:text="${listNipDokter}"></td>
-									<td th:text="${listNoTelDokter}"></td>
+									<td th:text="${listNamaDokter[__${x.index}__]}"></td>    
+									<td th:text="${listNipDokter[__${x.index}__]}"></td>
+									<td th:text="${listNoTelDokter[__${x.index}__]}"></td>
 								</tr>
 							</tbody>
 						</table>
