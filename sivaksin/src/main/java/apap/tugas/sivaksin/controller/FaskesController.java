@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.ArrayList;
 
 @Controller
 public class FaskesController {
@@ -198,5 +199,17 @@ public class FaskesController {
         faskes.setListPasien(pasiens);
 
         return "add-pasien-faskes";
+    }
+
+    @GetMapping("/cari/jumlah-pasien/bulan-ini")
+    public String CariJumlahPasienFaskes(Model model){
+        List<FaskesModel> listFaskes = faskesService.getFaskesList();
+        List<Integer> jumlahPasien = new ArrayList<Integer>();
+        for (FaskesModel f : listFaskes){
+            jumlahPasien.add(f.getListPasien().size());
+        }
+        model.addAttribute("listFaskes", listFaskes);
+        model.addAttribute("jumlahPasien", jumlahPasien);
+        return "jumlah-pasien-faskes";
     }
 }

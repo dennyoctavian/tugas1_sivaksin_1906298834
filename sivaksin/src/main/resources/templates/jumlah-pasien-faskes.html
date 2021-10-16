@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>SIVAKSIN</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+		<nav th:replace="fragments/fragment :: navbar('CARI')"></nav>
+		<div class="container">
+			<h2 class="page-header text-center">Daftar Jumlah Pasien Bulan Ini</h2>
+			<br />
+			<div class="card m-4 p-4">
+				<div class="card-body">
+					<div class="justify-content-center">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Nama Faskes</th>
+									<th>Jumlah Pasien</th>
+								</tr>
+							</thead>
+							<tbody th:each="faskes, x : ${listFaskes}">
+								<tr>
+									<td class="text-center" th:text="${x.count}"></td>
+									<td class="text-center" th:text="${faskes.namaFaskes}"></td>
+									<td
+										class="text-center"
+										th:text="${jumlahPasien[__${x.index}__]}"
+									></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br />
+			</div>
+		</div>
+	</body>
+	<footer th:replace="fragments/fragment :: footer()"></footer>
+</html>
