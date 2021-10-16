@@ -24,7 +24,7 @@
 						<h3>Jenis Kelamin :</h3>
 						<p th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"></p>
 						<h3>Tanggal Lahir:</h3>
-						<p th:text="${pasien.tanggalLahir}"></p>
+						<p th:text="${#temporals.dayOfWeekNameShort(pasien.tanggalLahir)} + ', ' + ${#temporals.day(pasien.tanggalLahir)} + ' ' + ${#temporals.monthName(pasien.tanggalLahir)} + ' ' + ${#temporals.year(pasien.tanggalLahir)} + ' ' + ${#temporals.format(pasien.tanggalLahir, 'HH:mm')}"></p>
 						<h3>Temapat Lahir:</h3>
 						<p th:text="${pasien.tempatLahir}"></p>
 						<h3>Pekerjaan:</h3>
