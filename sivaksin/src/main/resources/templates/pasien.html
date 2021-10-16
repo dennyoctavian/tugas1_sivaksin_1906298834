@@ -60,7 +60,10 @@
 									<td
 										th:text="${pasien.jenisKelamin == 0} ?'Laki-laki' : 'Perempuan'"
 									></td>
-									<td th:text="${pasien.tanggalLahir}"></td>
+									<td
+										th:text="${#temporals.day(pasien.tanggalLahir)} + ' ' + ${#temporals.monthName(pasien.tanggalLahir)} + ' ' +
+                            ${#temporals.year(pasien.tanggalLahir)}"
+									></td>
 									<td th:text="${pasien.tempatLahir}"></td>
 									<td th:text="${pasien.pekerjaan}"></td>
 									<td>
